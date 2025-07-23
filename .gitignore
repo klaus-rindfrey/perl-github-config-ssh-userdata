@@ -64,18 +64,17 @@ pod2htm*.tmp
 # -------------------------------------------------------------
 # Emacs-specific temporary and backup files
 # -------------------------------------------------------------
-*~              # Emacs backup files
-\#*\#           # Emacs autosave files
-.\#*            # Emacs lock files
-*.elc           # Compiled Emacs Lisp files
-*.el~           # Emacs Lisp backups
+*~
+\#*\#
+.\#*
+*.elc
+*.el~
 
 # -------------------------------------------------------------
 # Editor/tool-specific configuration (optional, uncomment if used)
 # -------------------------------------------------------------
-# .idea/        # JetBrains IDEs
-# .vscode/      # Visual Studio Code
-
-
-
+# # JetBrains IDEs
+# .idea/
+# # Visual Studio Code
+# .vscode/
 
