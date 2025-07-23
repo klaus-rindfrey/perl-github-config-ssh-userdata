@@ -37,8 +37,8 @@ nytprof.out
 .last_cover_stats
 
 # Module specific files
-App-ghmulti-*
-App-ghmulti-*.tar.gz
+GitHub-Config-SSH-UserData-*
+GitHub-Config-SSH-UserData-*.tar.gz
 
 
 # CPAN-related temporary files
