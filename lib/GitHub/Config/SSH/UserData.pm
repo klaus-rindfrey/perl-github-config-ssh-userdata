@@ -61,7 +61,7 @@ sub get_user_data_from_ssh_cfg {
 
 =head1 NAME
 
-GitHub::Config::SSH::UserData - The great new GitHub::Config::SSH::UserData!
+GitHub::Config::SSH::UserData - Read user data from comments in ssh config file
 
 =head1 VERSION
 
@@ -69,25 +69,100 @@ Version 0.01
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+   use GitHub::Config::SSH::UserData qw(get_user_data_from_ssh_cfg);
 
-Perhaps a little code snippet.
+   my $udata = get_user_data_from_ssh_cfg("johndoe");
 
-    use GitHub::Config::SSH::UserData;
+or
 
-    my $foo = GitHub::Config::SSH::UserData->new();
-    ...
+   my $udata = get_user_data_from_ssh_cfg("johndoe", $my_ssh_config_file);
 
-=head1 EXPORT
+=head1 DESCRIPTION
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+This module exports a single function (C<get_user_data_from_ssh_cfg()>) that
+is useful when using multiple GitHub accounts with SSH keys.  First, you
+should read this gist L<https://gist.github.com/oanhnn/80a89405ab9023894df7>
+and follow the instructions.
 
-=head1 SUBROUTINES/METHODS
+To use C<get_user_data_from_ssh_cfg()>, you must add information to your ssh config file (default
+F<~/.ssh/config>) by adding comments like this:
 
-=head2 function1
+  Host github-ALL-ITEMS
+  #  User: John Doe <main@addr.xy> <foo@bar> additional data
+     HostName github.com
+     IdentityFile ~/.ssh/abc
+     IdentitiesOnly yes
 
-...
+  Host github-minimal
+  #  User: <main@addr.xy>
+     HostName github.com
+     IdentityFile ~/.ssh/mini
+     IdentitiesOnly yes
+
+  Host github-std
+  #  User: Jonny Controlletti <main-jc@addr.xy>
+     HostName github.com
+     IdentityFile ~/.ssh/std
+     IdentitiesOnly yes
+
+  Host github-std-data
+  #  User: Alexander Platz <AlexPl@addr.xy> more data
+     HostName github.com
+     IdentityFile ~/.ssh/aaaaa
+     IdentitiesOnly yes
+
+The function looks for C<Host> names beginning with C<github->. It assumes that
+the part after the hyphen is your username on github. E.g., in the example
+above the gibthub usernames are C<ALL-ITEMS>, C<minimal>, C<std> and C<std-data>.
+
+The next line must be a comment line beginning with C<User:> followed by an
+optional name (full name, may contain spaces) followed by one or two email addresses in angle
+brackets, optionally followed by another string. See the examples above.
+
+
+HOME
+
+The following function can be exported on demand:
+
+=over
+
+=item C<get_user_data(I<USER_NAME>, I<SSH_CFG_FILE>)>
+
+=item C<get_user_data(I<USER_NAME>)>
+
+The function scans file I<C<SSH_CFG_FILE>> (default is
+C<$ENV{HOME}/.ssh/config> and looks for C<Host github-I<USER_NAME>>. Then is
+scans the C<User:> comment in the next line (see description above). It
+returns a reference to a hash containing:
+
+=over
+
+=item C<full_name>
+
+The full name before the first email address. If no full name ist specified,
+then the value is set to I<C<USER_NAME>>.
+
+This key always exists.
+
+=item C<email>
+
+The first email address. This key always exists.
+
+=item C<email2>
+
+The second email address. This key only exists if a second email address is specified.
+
+=item C<other_data>
+
+Trailing string. This key only exists if a second email address if there is
+such a triling string.
+
+=back
+
+If C<Host github-I<USER_NAME>> is not found, or if there is no corresponding C<User:> comment, or if this comment is not formatted correctly, a fatal error occurs.
+
+=back
+
 
 =head1 AUTHOR
 
