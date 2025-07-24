@@ -3,6 +3,23 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
+use File::Spec::Functions;
+use autodie;
+
+my $PM_File = catfile(qw(lib GitHub Config SSH UserData.pm));
+
+my $Version;
+open(my $h, '<', $PM_File);
+foreach my $line (<$h>) {
+  if ($line =~ /\bour\s+\$VERSION\s+.*?["']([^"']+)["']/) {
+    $Version = $1;
+    last;
+  }
+}
+close($h);
+die("VERSION not found in $PM_File") if !$Version;
+
+
 my %WriteMakefileArgs = (
     NAME             => 'GitHub::Config::SSH::UserData',
     AUTHOR           => q{Klaus Rindfrey <klausrin@cpan.org.eu>},
@@ -13,12 +30,35 @@ my %WriteMakefileArgs = (
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => '0',
     },
+    PREREQ_PM => {
+        'strict'   => 0,
+        'warnings' => 0,
+        'autodie'  => 0,
+        'constant' => 0,
+        'Carp'     => 0,
+        'File::Spec::Functions' => 0,
+        'Exporter' => '1.6',
+    },
+    META_MERGE => {
+        "meta-spec" => { version => 2 },
+        dynamic_config => 0,
+        resources => {
+            repository => {
+                type => 'git',
+                url  => 'https://github.com/klaus-rindfrey/perl-github-config-ssh-userdata.git',
+                web  => 'https://github.com/klaus-rindfrey/perl-github-config-ssh-userdata.git',
+            },
+        },
+        bugtracker => {
+            web => 'https://github.com/klaus-rindfrey/perl-github-config-ssh-userdata/issues'
+        },
+        provides => { 'GitHub::Config::SSH::UserData' => {file => $PM_File,
+                                                          version => $Version
+                                                         },
+                    },
+    },
     TEST_REQUIRES => {
         'Test::More' => '0',
-    },
-    PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'GitHub-Config-SSH-UserData-*' },

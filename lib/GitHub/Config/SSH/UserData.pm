@@ -59,6 +59,10 @@ sub get_user_data_from_ssh_cfg {
 }
 
 
+1; # End of GitHub::Config::SSH::UserData
+
+=pod
+
 =head1 NAME
 
 GitHub::Config::SSH::UserData - Read user data from comments in ssh config file
@@ -113,7 +117,7 @@ F<~/.ssh/config>) by adding comments like this:
 
 The function looks for C<Host> names beginning with C<github->. It assumes that
 the part after the hyphen is your username on github. E.g., in the example
-above the gibthub usernames are C<ALL-ITEMS>, C<minimal>, C<std> and C<std-data>.
+above the github usernames are C<ALL-ITEMS>, C<minimal>, C<std> and C<std-data>.
 
 The next line must be a comment line beginning with C<User:> followed by an
 optional name (full name, may contain spaces) followed by one or two email addresses in angle
@@ -136,7 +140,7 @@ returns a reference to a hash containing:
 
 =item C<full_name>
 
-The full name before the first email address. If no full name ist specified,
+The full name before the first email address. If no full name is specified,
 then the value is set to I<C<USER_NAME>>.
 
 This key always exists.
@@ -152,7 +156,7 @@ The second email address. This key only exists if a second email address is spec
 =item C<other_data>
 
 Trailing string. This key only exists if a second email address if there is
-such a triling string.
+such a trailing string.
 
 =back
 
@@ -199,9 +203,6 @@ L<https://github.com/klaus-rindfrey/perl-github-config-ssh-userdata>
 =back
 
 
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 LICENSE AND COPYRIGHT
 
 This software is copyright (c) 2025 by Klaus Rindfrey.
@@ -212,4 +213,3 @@ the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1; # End of GitHub::Config::SSH::UserData
