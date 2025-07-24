@@ -21,8 +21,11 @@ our @EXPORT_OK = qw(get_user_data_from_ssh_cfg);
 
 
 sub get_user_data_from_ssh_cfg {
+  croak("Wrong number of arguments") if !@_ || @_ > 2;
   my $user_name = shift;
   my $config_file = shift // DEFAULT_CFG_FILE;
+  croak("First argument must be a scalar (a string)") if ref($user_name);
+  croak("Second argument must be a scalar (a string)") if ref($config_file);
 
   open(my $hndl, '<', $config_file);
   my %seen;
