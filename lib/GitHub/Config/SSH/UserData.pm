@@ -119,9 +119,6 @@ The next line must be a comment line beginning with C<User:> followed by an
 optional name (full name, may contain spaces) followed by one or two email addresses in angle
 brackets, optionally followed by another string. See the examples above.
 
-
-HOME
-
 The following function can be exported on demand:
 
 =over
