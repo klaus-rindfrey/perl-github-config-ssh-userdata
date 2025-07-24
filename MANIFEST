@@ -14,6 +14,7 @@ t/manifest.t
 t/pod-coverage.t
 t/pod.t
 xt/boilerplate.t
+xt/pod-spell.t
 xt/with_my_local_ssh_config.t
 
 META.yml                                 Module meta-data (added by MakeMaker)
