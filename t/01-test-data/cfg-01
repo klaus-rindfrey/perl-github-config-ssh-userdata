@@ -1,5 +1,5 @@
 
-Host github-ALL_ITEMS
+Host github-ALL-ITEMS
 #  User: John Doe <main@addr.xy> <foo@bar> additional data
    HostName github.com
    IdentityFile ~/.ssh/abc
@@ -18,7 +18,7 @@ Host github-std
    IdentityFile ~/.ssh/std
    IdentitiesOnly yes
 
-Host github-std+data
+Host github-std-data
 #  User: Alexander Platz <AlexPl@addr.xy> more data
    HostName github.com
    IdentityFile ~/.ssh/aaaaa

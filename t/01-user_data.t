@@ -16,7 +16,7 @@ ok(1);
 {
   my $test_cfg_file = catfile($Test_Data_Dir, 'cfg-01');
   note("Simple tests using $test_cfg_file");
-  is_deeply(get_user_data_from_ssh_cfg('ALL_ITEMS', $test_cfg_file),
+  is_deeply(get_user_data_from_ssh_cfg('ALL-ITEMS', $test_cfg_file),
             {
              'email'      => 'main@addr.xy',
              'email2'     => 'foo@bar',
@@ -39,7 +39,7 @@ ok(1);
             },
             "$test_cfg_file: std");
 
-  is_deeply(get_user_data_from_ssh_cfg('std+data', $test_cfg_file),
+  is_deeply(get_user_data_from_ssh_cfg('std-data', $test_cfg_file),
             {
              'email'      => 'AlexPl@addr.xy',
              'full_name'  => 'Alexander Platz',
