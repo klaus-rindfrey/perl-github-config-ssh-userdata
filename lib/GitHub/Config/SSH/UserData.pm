@@ -19,12 +19,7 @@ use Exporter 'import';
 
 our @EXPORT_OK = qw(get_user_data_from_ssh_cfg);
 
-#
-# get_user_data USER_NAME
-#
-# Reads ‘~/.ssh/config’ and returns a hash consisting containing the user's
-# full name ('full_name') and e-mail address ('email') from this file.
-#
+
 sub get_user_data_from_ssh_cfg {
   my $user_name = shift;
   my $config_file = shift // DEFAULT_CFG_FILE;
