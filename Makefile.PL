@@ -23,12 +23,14 @@ die("VERSION not found in $PM_File") if !$Version;
 my %WriteMakefileArgs = (
     NAME             => 'GitHub::Config::SSH::UserData',
     AUTHOR           => q{Klaus Rindfrey <klausrin@cpan.org.eu>},
-    VERSION_FROM     => 'lib/GitHub/Config/SSH/UserData.pm',
-    ABSTRACT_FROM    => 'lib/GitHub/Config/SSH/UserData.pm',
+    VERSION_FROM     => $PM_File,
+    ABSTRACT_FROM    => $PM_File,
     LICENSE          => 'perl_5',
     MIN_PERL_VERSION => '5.010',
     CONFIGURE_REQUIRES => {
-        'ExtUtils::MakeMaker' => '0',
+        'autodie'               => '0',
+        'ExtUtils::MakeMaker'   => '0',
+        'File::Spec::Functions' => '0',
     },
     PREREQ_PM => {
         'strict'   => 0,
