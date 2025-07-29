@@ -174,6 +174,13 @@ the web interface at L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=GitHub-Co
 automatically be notified of progress on your bug as I make changes.
 
 
+=head1 SEE ALSO
+
+L<https://gist.github.com/oanhnn/80a89405ab9023894df7>
+
+L<Git::RemoteURL::Parse>
+
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
