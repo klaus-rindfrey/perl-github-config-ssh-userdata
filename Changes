@@ -1,8 +1,9 @@
 Revision history for GitHub-Config-SSH-UserData
 
-x.yz    YYYY/MM/DD
+0.02    2025/08/08
 
         - Added parameter check.
+        - Completed POD.
 
 0.01    2025/07/24
 
