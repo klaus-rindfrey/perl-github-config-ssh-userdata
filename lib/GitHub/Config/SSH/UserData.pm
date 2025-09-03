@@ -24,7 +24,7 @@ sub get_user_data_from_ssh_cfg {
 
   open(my $hndl, '<', $config_file);
   my %seen;
-  my $cfg_data;
+  my $cfg_data = {};
   while (defined(my $line = <$hndl>)) {
     warn ">>>>$line";
     if ($line =~ /^Host\s+github-(\S+)\s*$/) {
