@@ -77,6 +77,17 @@ my $Test_Data_Dir = catdir(dirname(__FILE__), '01-test-data');
   }
 }
 
+{
+  local $ENV{HOME} = $Test_Data_Dir;
+  is_deeply(get_user_data_from_ssh_cfg('perry.mason'),
+            {
+             'email'      => 'perry.mason@addr.xyz',
+             'email2'     => 'pm@bar',
+             'full_name'  => 'Perry Mason',
+             'other_data' => 'blah blah'
+            },
+            'localized HOME');
+}
 
 #==================================================================================================
 done_testing();
