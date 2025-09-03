@@ -19,10 +19,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     strategy:
       matrix:
-        # runner: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        # perl: ["5.14", "5.36", "5.40"]
-        runner: ["ubuntu-latest"]
-        perl: ["5.14"]
+        runner: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        perl: ["5.14", "5.36", "5.40"]
     name: Perl ${{ matrix.perl }} on ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +36,7 @@ jobs:
       - name: Install current cpanm
         run: cpanm App::cpanminus
       - name: Install dependencies
-        run: |
-          cpanm --installdeps .
+        run: cpanm --installdeps .
       - name: Show content of log files on Linux
         if: ${{ failure() && startsWith( matrix.runner, 'ubuntu-' )  }}
         run: cat /home/runner/.cpanm/work/*/build.log
@@ -57,7 +54,6 @@ jobs:
           find t
           perl Makefile.PL
           make
-          make test TEST_VERBOSE=1
       - name: Run Regular Tests 
         run: prove -bv t
       - name: Run author tests
