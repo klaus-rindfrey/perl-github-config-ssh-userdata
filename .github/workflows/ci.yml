@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - gh_actions
   pull_request:
     branches:
       - main
@@ -54,11 +55,11 @@ jobs:
 
       - name: Process Makefile.PL
         run: |
+          find t
           perl Makefile.PL
           make
       - name: Run Regular Tests 
         run: prove -bv t
-
       - name: Run author tests
         if: startsWith( matrix.runner, 'ubuntu-' ) && matrix.perl == '5.40'
         run: |
