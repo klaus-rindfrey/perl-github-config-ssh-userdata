@@ -26,6 +26,7 @@ sub get_user_data_from_ssh_cfg {
   my %seen;
   my $cfg_data;
   while (defined(my $line = <$hndl>)) {
+    warn ">>>>$line";
     if ($line =~ /^Host\s+github-(\S+)\s*$/) {
       my $current_user_name = $1;
       croak("$current_user_name: duplicate user name") if exists($seen{$current_user_name});

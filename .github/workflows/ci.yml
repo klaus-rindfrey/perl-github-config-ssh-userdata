@@ -57,6 +57,7 @@ jobs:
           find t
           perl Makefile.PL
           make
+          make test TEST_VERBOSE=1
       - name: Run Regular Tests 
         run: prove -bv t
       - name: Run author tests
