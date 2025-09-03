@@ -39,7 +39,6 @@ jobs:
         run: cpanm App::cpanminus
       - name: Install dependencies
         run: |
-          cpanm -v GitHub::Config::SSH::UserData
           cpanm --installdeps .
       - name: Show content of log files on Linux
         if: ${{ failure() && startsWith( matrix.runner, 'ubuntu-' )  }}
