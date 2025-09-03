@@ -73,7 +73,7 @@ my $Test_Data_Dir = catdir(dirname(__FILE__), '01-test-data');
     local $@;
     eval { get_user_data_from_ssh_cfg('non-existing-name', $test_cfg_file) };
     ok(defined($@) && $@ =~ /\bnon-existing-name: user name not in \Q$test_cfg_file\E\b/,
-       "$test_cfg_file: non-existing-name: correct error message");
+       "$test_cfg_file: non-existing-name: correct error message")or diag ">>>$@<<<";
   }
 }
 

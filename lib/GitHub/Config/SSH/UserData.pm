@@ -40,15 +40,14 @@ sub get_user_data_from_ssh_cfg {
                 (?:(\S+(\s+\S+)))?$                 # other data (optional)
                /x or
         croak("$current_user_name: missing or invalid user info");
-      @{$cfg_data}{qw(full_name email email2 other_data)} = ($1, $2, $3, $4
-                                                            );
+      @{$cfg_data}{qw(full_name email email2 other_data)} = ($1, $2, $3, $4);
       $cfg_data->{full_name} //= $current_user_name;
       delete @{$cfg_data}{ grep { not defined $cfg_data->{$_} } keys %{$cfg_data} };
       last;
     }
   }
   close($hndl);
-  croak("$user_name: user name not in $config_file") unless $cfg_data;
+  croak("$user_name: user name not in $config_file") unless keys(%$cfg_data);
   return $cfg_data;
 }
 
