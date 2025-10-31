@@ -1,0 +1,23 @@
+^\.git\/
+^\.github\/
+^\.gitignore$
+
+# Makemaker generated files and dirs.
+^MANIFEST\.
+^Makefile$
+^blib/
+^MakeMaker-\d
+^MYMETA\..*
+^pm_to_blib$
+
+# Module specific files
+\bGitHub-Config-SSH-UserData-\d+(?:\.\d+)+\/
+^GitHub-Config-SSH-UserData-\d+(?:\.\d+)+\.tar\.gz$
+
+
+# Temp, old and emacs backup files.
+~$
+\.old$
+^#.*#$
+^\.#
+
