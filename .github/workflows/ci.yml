@@ -65,6 +65,12 @@ jobs:
         if: failure() && startsWith(matrix.runner, 'windows-')
         run: cat C:/Users/RUNNER~1/.cpanm/work/*/build.log
 
+      - name: Build and test
+        run: |
+          perl Makefile.PL
+          make
+          prove -lr t
+
       - name: Author and release tests (COMPOSITE)
         if: matrix.runner == 'ubuntu-latest' && matrix.perl == '5.40'
         uses: klaus-rindfrey/perltest-release-and-author-tests@main
