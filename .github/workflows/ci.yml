@@ -1,16 +1,25 @@
-# From https://github.com/AAHAZRED/perl-Config-INI-RefVars, adapted.
+## From https://github.com/AAHAZRED/perl-Config-INI-RefVars, adapted.
 
 name: Run Module Tests
 
 on:
   push:
     branches:
-      - main
-      - gh_actions
+      - '**'
   pull_request:
     branches:
       - main
+      - devel
   workflow_dispatch:
+    inputs:
+      release_test_addn:
+        description: "Controls whether additional release tests should be run."
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 # https://github.com/shogo82148/actions-setup-perl
 
@@ -56,21 +65,8 @@ jobs:
         if: failure() && startsWith(matrix.runner, 'windows-')
         run: cat C:/Users/RUNNER~1/.cpanm/work/*/build.log
 
-      - name: Build and test
-        run: |
-          perl Makefile.PL
-          make
-          prove -lr t
-
-      - name: Author tests
+      - name: Author and release tests (COMPOSITE)
         if: matrix.runner == 'ubuntu-latest' && matrix.perl == '5.40'
-        env:
-          TEST_AUTHOR: 1
-          RELEASE_TESTING: 1
-          NO_LOCAL_TESTS: 1
-        run: |
-          perl Makefile.PL
-          make
-          make manifest
-          cpanm --notest --installdeps .
-          prove -lr t xt
+        uses: klaus-rindfrey/perltest-release-and-author-tests@main
+        with:
+          release_test_addn: ${{ inputs.release_test_addn }}
