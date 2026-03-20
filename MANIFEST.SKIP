@@ -21,3 +21,6 @@
 ^#.*#$
 ^\.#
 
+
+# Other
+^local_author_test.sh$
