@@ -1,7 +1,8 @@
 Revision history for distribution GitHub-Config-SSH-UserData
 
-x.yz    YYYY-MM-DD
+0.10    2026-03-23
 
+      - Added plain text README.
       - Fixed test script.
 
 0.09    2026-03-20
