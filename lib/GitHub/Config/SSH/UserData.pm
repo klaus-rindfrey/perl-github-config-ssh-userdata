@@ -211,9 +211,7 @@ L<https://github.com/klaus-rindfrey/perl-github-config-ssh-userdata>
 
 This software is copyright (c) 2025 by Klaus Rindfrey.
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
+License: The GNU General Public License, Version 1
 
 =cut
 
